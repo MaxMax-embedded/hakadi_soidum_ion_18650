@@ -1,6 +1,6 @@
 # Measurements with Hakadi 18650 Sodium Ion Cells
 
-##Project Overview
+## Project Overview
 
 The Goal of this project is to provide an overview about what a commercially available Sodium Ion cell is capable of in the end of 2023. As far as I know, Hakadi is the only battery brand selling Sodium based cells to the general Public. For experimental purposes I bought 4 cells in a 18650 package with a claimed capacity of 1500mAh. The datasheet provides the following general specifications:
 
@@ -19,7 +19,7 @@ Notable are the wide voltage range as well as the large temperature range, which
 
 The research in this reposetory is done by me as a Student with my own, in part self developed, measurement equipment so my capabillity for longer term aging tests, as well as test at temperatures other then room temperature are limited at the moment. I also do research at my University and may link to papers in the future. 
 
-##Testplan
+## Testplan
 
 I am currently waiting for the cells from China so no tests are in progress for the moment. Heres the test plan as well as the current status:
 
@@ -33,7 +33,7 @@ I am currently waiting for the cells from China so no tests are in progress for 
 
 All tests are carried out at room temperature. A overview about the testing equipment and its associated limits are provided in the next chapter. Hakadi claims that the cells can safely be dicharged and recharged to 0V which is a possibility for Sodium Cells with certain electrolytes and therefore needs to be tested 😉
 
-##Measurement Equipment
+## Measurement Equipment
 
 To perform the various tests listed above it is necessary to charge and discharge the cells with a controlled current. To performed the controlled discharge, a self developed electronic load is used. The charge is a bit more tricky, because the charge current needs to be controlled arbitrary so no standard charging IC can be used. Because of the fast change between charge and Discharge pulses for the HPPC, a Lab Bench Power Supply is also no solution for the charge cycle. To solve this problem, a electronic load can be used for the charge cycle as well but with the ground reference "shifted" to the positive terminal voltage of the battery. The "upper" load therefore acts as a voltage controlled current source while the "lower" load acts as a voltage controlled current sink. 
 
