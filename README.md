@@ -10,6 +10,8 @@ The Goal of this project is to provide an overview about what a commercially ava
 | Typical Capacity at 0.5C | 1530mAh |
 | Charge Voltage |  4.1V |
 | Cutoff Voltage | 1.5V |
+| Continuous Charge Rate at 0-45°C | 1C |
+| Continuous Discharge Rate at 0-45°C | 3C |
 | Weight | 37.5g |
 | Charge Temperature Range | -10-45°C |
 | Discharge Temperature Range | -30-60°C|
