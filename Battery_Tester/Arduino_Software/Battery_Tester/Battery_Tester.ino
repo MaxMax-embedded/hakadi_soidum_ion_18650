@@ -1,5 +1,16 @@
+/**
+ * @file Battery_Tester.ino
+ * @author Maximilian Mönikes
+ * @brief A short skript to controll my homebrew battery tester Hardware
+ * @version 1.0
+ * @date 2023-10-21
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #include <Wire.h>
-#include "Test_Control.hpp"
+
 
 #define DAC_CHARGE_ADDRESS 0x60     //I2C Address of the Charge Controller
 #define DAC_DISCHARGE_ADDRESS 0x61  //I2C Address of the Discharge Controller
@@ -28,9 +39,18 @@
 #define UPPER_VOLTAGE_LIMIT 4.2     //Manufacturer states that 4.1 is the charge cut-off voltage
 #define CURRENT_LIMIT 5.0           //Maximum continous discharge in datasheet is 3C = 4.5A so 5A as a worst case limit should be reasonable
 
+
+typedef enum 
+{
+  IDLE=0,
+  CCCV=1,
+  CCP=2,
+  CCR=3,
+  NUMOFSTATES=4
+} testState_t;
+
 uint8_t stringbuffer[64];
 uint8_t stringpointer = 0;
-
 
 float current = 0;
 float voltage = 0;

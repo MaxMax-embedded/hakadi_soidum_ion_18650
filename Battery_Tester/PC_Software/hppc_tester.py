@@ -24,7 +24,6 @@ operatingmodes = {
 }
 
 class tester:
-
     """
     Set Functions are used to send commands to the arduino. Might be changed to private functions in the future
 

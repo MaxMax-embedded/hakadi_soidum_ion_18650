@@ -49,6 +49,7 @@ def hppcsubcycle(startoffset):
             bat_tester.set_voltage_limits(4.4,CUTOFF_VOLTAGE - 0.1)
             bat_tester.start_idle_time(HPPC_REST_AFTER_STEP)
         
+        
 
 with open(logfile, 'a') as f:
     f.write("step,mode,time,voltage,current\n")
@@ -56,6 +57,7 @@ with open(logfile, 'a') as f:
 while running:
     #Wait for new logdata -> advance in testing scheduel
     logdata = bat_tester.get_data()
+    
     with open(logfile, 'a') as f:
         f.write(str(instructionpointer) + "," + str(logdata,'utf-8').replace('\r', ""))
     print(logdata)
