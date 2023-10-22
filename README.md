@@ -28,9 +28,9 @@ I am currently waiting for the cells from China so no tests are in progress for 
 | Test | Progress |
 | ---- | ---- |
 | Capacity with 0.5C Discharge | <span style="color:grey"> waiting for cells </span> |
+| Discharge Capacity at various C rates | <span style="color:grey"> not in progress </span> |
 | HPPC test with 5% steps | <span style="color:grey"> not in progress </span> |
 | incremental charge and discharge OCV | <span style="color:grey"> not in progress </span> |
-| Discharge Capacity at various C rates | <span style="color:grey"> not in progress </span> |
 | 0V Discharge behaviour | <span style="color:grey"> not in progress </span> |
 
 All tests are carried out at room temperature. A overview about the testing equipment and its associated limits are provided in the next chapter. Hakadi claims that the cells can safely be dicharged and recharged to 0V which is a possibility for Sodium Cells with certain electrolytes and therefore needs to be tested 😉
@@ -41,3 +41,4 @@ To perform the various tests listed above it is necessary to charge and discharg
 
 With the loads beeing made from non precise components it is necessary to measure the current going in and out of the battery independently. This is done by using a ACS712-05 Current sense Module which uses the ACS712 Hall based current sensor IC configured to a range of +-5A. The uuput of the current sensor, as well as the voltage of the battery is measured by a ADS1115 16-bit ADC sensor. While the voltage of the current sensor is measured single ended, the battery voltage is measured differentially to provide better accuracy. The sample rate of all values is approx 100ms and the delay between current and voltage measurements is approx 20ms. To mitigate the influence of wiring on impedance measurements, the cell holder provides the option to perform 4-wire measurements of the cell under test.
 
+The setup is controlled by a arduino Nano implementing all necessary controlers. A PC running a python script is used to control the experiment, save log data and communicate with the arduino.
