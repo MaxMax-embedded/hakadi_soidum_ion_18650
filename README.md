@@ -67,11 +67,13 @@ The first static capacity test used the following parameters: A CCCV charge to 4
 The following Figure shows the discharge behaviour at 1C
 
 ![Sodium Ion discharge curve at 1C](/Measurement_Data/static_capacity_tests/discharge_curve_1c.jpg) 
+
 Sodium Ion discharge curve at 1C
 
 Note that the voltage decreases nearly linear until 1Ah discharged current after which it plateaus at approx. 2.5V before starting to decrease rapidly. In comparison, a Molicel P45B NCA based cell, which was also tested with the same setup at a sligthly lower C rate can be seen in the Figure below:
 
 ![Molicel P45B discharge curve at 2/3C](/Measurement_Data/static_capacity_tests/discharge_curve_molicel_comparison.jpg)
+
 Molicel P45B discharge curve at 2/3C
 
 The NCA based chemistry shows a significantly smaller voltage decrease over SoC and lacks the voltage plateau at a SoC around 30% as well as a higher voltage in general.
