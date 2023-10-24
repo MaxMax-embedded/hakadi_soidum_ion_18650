@@ -83,11 +83,13 @@ In contrast LFP based chemistrys show a nearly flat discharge voltage over the S
 
 If you want to use the raw csv data, here is a small description of the format:
 
-step: Current Instruction Pointer
-mode: Operating Mode
-time: Time since the start of the cell tester in milliseconds
-voltage: Cell Voltage in V
-current: Cell Current in A
+| field | description |
+| --- | --- |
+| step | Current Instruction Pointer |
+| mode | Operating Mode |
+| time | Time since the start of the cell tester in milliseconds |
+| voltage | Cell Voltage in V |
+| current | Cell Current in A |
 
 Discharge currents have a negative sign, while charging currents have a positive
 
