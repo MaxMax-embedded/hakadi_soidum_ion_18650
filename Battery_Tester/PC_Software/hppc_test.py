@@ -9,17 +9,17 @@ CCCV_CHARGE_VOLTAGE = 4.1        #Charge Voltage in V
 CCCV_CHARGE_TIMEOUT = 10000      #Maximum charging time if cutoff current is not reacher earlier in seconds
 CUTOFF_VOLTAGE = 1.5             #Minimum Voltage of the Battery Cell according to Datasheet
 
-IDLE_BEFORE_HPPC_START = 3600    #Rest Time after CCCV charge and before first HPPC Pulses
+IDLE_BEFORE_HPPC_START = 1200    #Rest Time after CCCV charge and before first HPPC Pulses
 
-HPPC_DISCHARGE_PULSE_CURRENT = -3.0 #Current of the HPPC Discharge Pulse in Ampere (must be negative)
+HPPC_DISCHARGE_PULSE_CURRENT = -2.2 #Current of the HPPC Discharge Pulse in Ampere (must be negative)
 HPPC_DISCHARGE_PULSE_DURATION = 10  #Duration of the HPPC discharge pulse in seconds
 HPPC_DISCHARGE_PULSE_PAUSE = 40     #Pause between Discharge and subsequent charge pulse in seconds
-HPPC_CHARGE_PULSE_CURRENT = 3.0     #Current of the HPPC charge Pulse in Ampere (must be positive)
+HPPC_CHARGE_PULSE_CURRENT = 2.0     #Current of the HPPC charge Pulse in Ampere (must be positive)
 HPPC_CHARGE_PULSE_DURATION = 10     #Duration of the HPPC charge pulse in seconds
 HPPC_CHARGE_PULSE_PAUSE = 40        #Pause between charge pulse and step discharge in seconds
-HPPC_STEP_DISCHARGE_CURRENT = -0.1  #Discharge current during the step discharge in ampere (must be negative)
-HPPC_STEP_DISCHARGE_TIME = 1000     #Discharge time for step discharge in seconds
-HPPC_REST_AFTER_STEP = 3600         #Rest time after a discharge step in seconds
+HPPC_STEP_DISCHARGE_CURRENT = -1.0  #Discharge current during the step discharge in ampere (must be negative)
+HPPC_STEP_DISCHARGE_TIME = 540     #Discharge time for step discharge in seconds
+HPPC_REST_AFTER_STEP = 1200         #Rest time after a discharge step in seconds
 
 #####################################################
 

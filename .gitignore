@@ -1,1 +1,3 @@
 Hardware/Cell_tester/Cell_tester-backups/
+*.pyc
+__pycache__

@@ -3,18 +3,18 @@ import hppc_tester
 import time
 
 ############# Experiment Parameters ################
-CHARGE_CURRENT = 0.75   #CC Phase current of CCCV charge in Ampere
+CHARGE_CURRENT = 1.5   #CC Phase current of CCCV charge in Ampere
 CUTOFF_CURRENT = 0.075  #Cutoff current of CCCV charge in Ampere
 CHARGE_VOLTAGE = 4.1    #Charge Voltage in V
 CHARGE_TIMEOUT = 10000  #Maximum charging time if cutoff current is not reacher earlier in seconds
 
 DISCHARGE_CUTOFF_VOLTAGE = 1.5  #Cutoff voltage for the constant current discharge in V
-DISCHARGE_CURRENT = -0.75       #Discharge current in Ampere (must be negative)
+DISCHARGE_CURRENT = -1.5       #Discharge current in Ampere (must be negative)
 DISCHARGE_TIMEOUT = 10000       #Maximum discharge time in seconds
 #####################################################
 
-comport = Serial.Serial(port="COM5",baudrate=115200)
-logfile = "./static_test.csv" #Path of the logfile for the experiment
+comport = Serial.Serial(port="COM6",baudrate=115200)
+logfile = "./static_test_1c.csv" #Path of the logfile for the experiment
 
 running = True
 bat_tester = hppc_tester.tester(comport)
