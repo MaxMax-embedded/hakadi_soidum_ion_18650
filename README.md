@@ -27,9 +27,9 @@ I am currently waiting for the cells from China so no tests are in progress for 
 
 | Test | Progress |
 | ---- | ---- |
-| Capacity with 1C Discharge | <span style="color:grey"> waiting for cells </span> |
+| Capacity with 1C Discharge | <span style="color:grey"> Done </span> |
 | Discharge Capacity at various C rates | <span style="color:grey"> not in progress </span> |
-| HPPC test with 5% steps | <span style="color:grey"> not in progress </span> |
+| HPPC test with 10% steps | <span style="color:grey"> in progress </span> |
 | incremental charge and discharge OCV | <span style="color:grey"> not in progress </span> |
 | 0V Discharge behaviour | <span style="color:grey"> not in progress </span> |
 
@@ -56,8 +56,44 @@ My four cells arrived with the following voltages:
 | Cell 3 | 2.560V |
 | Cell 4 | 2.559V |
 
-Note that the multimeter was quiet cold before measuring the first cell so the last digit might be suspect to drift.
+I measured all cells with a no name, non calibrated 4 1/2 Digit multimeter so the difference might as well come from the measurement equipment
 
-Weight is between 36.53g and 37.00g.
+Weight is between 36.53g and 37.00g according to my pocket scale.
 
 ### Static capacity tests
+
+The first static capacity test used the following parameters: A CCCV charge to 4.1V with a cut-off current of 0.075mA followed by a CC Discharge with 1C (1500mA) and a CCCV charge with the same parameters as the initial charge. Due to noise issues with the rudamentary cell tester, the charge was terminated a bit earlier near 100mA. Nonetheless the claim of a nominal capacity of 1500mAh seems to be correct with a measured discharge capacity of 1540mAh. Due too the noise, the Coulomb Efficency can not be accuratly determined but is definitly in a range above 99 percent.
+
+The following Figure shows the discharge behaviour at 1C
+
+![Sodium Ion discharge curve at 1C](/Measurement_Data/static_capacity_tests/discharge_curve_1c.jpg)
+
+Note that the voltage decreases nearly linear until 1Ah discharged current after which it plateaus at approx. 2.5V before starting to decrease rapidly. In comparison, a Molicel P45B NCA based cell, which was also tested with the same setup at a sligthly lower C rate can be seen in the Figure below:
+
+![Molicel P45B discharge curve at 2/3C](/Measurement_Data/static_capacity_tests/discharge_curve_molicel_comparison.jpg)
+
+The NCA based chemistry shows a significantly smaller voltage decrease over SoC and lacks the voltage plateau at a SoC around 30% as well as a higher voltage in general.
+In contrast LFP based chemistrys show a nearly flat discharge voltage over the SoC range between 80% and 20%. This leads me to the conclusion that this cells are in fact real Sodium Ion cells and no rebranded Lithium based ones.
+
+### CSV Format descripion
+
+If you want to use the raw csv data, here is a small description of the format:
+
+step: Current Instruction Pointer
+mode: Operating Mode
+time: Time since the start of the cell tester in milliseconds
+voltage: Cell Voltage in V
+current: Cell Current in A
+
+Discharge currents have a negative sign, while charging currents have a positive
+
+| Mode Number | Operating Mode |
+| ---- | ---- |
+| 0 | IDLE |
+| 1 | CCCV |
+| 2 | Unregulated current pulse |
+| 3 | Regulated current pulse |
+
+Unregulated current pulses are used for fast discharges where a PI controller might take too long to stabilize but with lower accuracy
+
+Regulated current charges/discharges are controlled by a PI controller leading too better accuracy but with a small stabilization time
