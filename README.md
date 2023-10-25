@@ -28,8 +28,8 @@ I am currently waiting for the cells from China so no tests are in progress for 
 | Test | Progress |
 | ---- | ---- |
 | Capacity with 1C Discharge | <span style="color:grey"> Done </span> |
-| Discharge Capacity at various C rates | <span style="color:grey"> not in progress </span> |
-| HPPC test with 10% steps | <span style="color:grey"> in progress </span> |
+| Discharge Capacity at various C rates | <span style="color:grey"> Done for 0.25C - 1.5C </span> |
+| HPPC test with 10% steps | <span style="color:grey"> Done </span> |
 | incremental charge and discharge OCV | <span style="color:grey"> not in progress </span> |
 | 0V Discharge behaviour | <span style="color:grey"> not in progress </span> |
 
@@ -58,7 +58,7 @@ My four cells arrived with the following voltages:
 
 I measured all cells with a no name, non calibrated 4 1/2 Digit multimeter so the difference might as well come from the measurement equipment
 
-Weight is between 36.53g and 37.00g according to my pocket scale.
+Weight is between 36.53g and 37.00g according to a pocket scale.
 
 ### Static capacity tests
 
@@ -77,7 +77,17 @@ Note that the voltage decreases nearly linear until 1Ah discharged current after
 Molicel P45B discharge curve at 2/3C
 
 The NCA based chemistry shows a significantly smaller voltage decrease over SoC and lacks the voltage plateau at a SoC around 30% as well as a higher voltage in general.
-In contrast LFP based chemistrys show a nearly flat discharge voltage over the SoC range between 80% and 20%. This leads me to the conclusion that this cells are in fact real Sodium Ion cells and no rebranded Lithium based ones.
+In contrast LFP based chemistrys show a nearly flat discharge voltage over the SoC range between 80% and 20%. This leads to the conclusion that this cells are in fact real Sodium Ion cells.
+
+![](/Measurement_Data/static_capacity_tests/discharge_curves_multiple_c_rates.png)
+
+Constant current discharges at different C-rates show a slight correlation between useable capacity and discharge rate.
+
+### HPPC Test
+
+A HPPC test is performed to get information about the internal resistance as well as dynamic behaviour of the cell. Using the voltage difference between the start of a discharge step and the end of the 10 second discharge pulse and the discharge current, the internal resistance is approximated in the following Figure:
+
+![](/Measurement_Data/HPPC_Test/Rin_SoC.jpg)
 
 ### CSV Format descripion
 

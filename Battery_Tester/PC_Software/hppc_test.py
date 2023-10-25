@@ -3,7 +3,7 @@ import hppc_tester
 import time
 
 ############# Experiment Parameters ################
-CCCV_CHARGE_CURRENT = 0.75       #CC Phase current of CCCV charge in Ampere
+CCCV_CHARGE_CURRENT = 1.5       #CC Phase current of CCCV charge in Ampere
 CCCV_CUTOFF_CURRENT = 0.075      #Cutoff current of CCCV charge in Ampere
 CCCV_CHARGE_VOLTAGE = 4.1        #Charge Voltage in V
 CCCV_CHARGE_TIMEOUT = 10000      #Maximum charging time if cutoff current is not reacher earlier in seconds
@@ -11,10 +11,10 @@ CUTOFF_VOLTAGE = 1.5             #Minimum Voltage of the Battery Cell according 
 
 IDLE_BEFORE_HPPC_START = 1200    #Rest Time after CCCV charge and before first HPPC Pulses
 
-HPPC_DISCHARGE_PULSE_CURRENT = -2.2 #Current of the HPPC Discharge Pulse in Ampere (must be negative)
+HPPC_DISCHARGE_PULSE_CURRENT = -2.0 #Current of the HPPC Discharge Pulse in Ampere (must be negative)
 HPPC_DISCHARGE_PULSE_DURATION = 10  #Duration of the HPPC discharge pulse in seconds
 HPPC_DISCHARGE_PULSE_PAUSE = 40     #Pause between Discharge and subsequent charge pulse in seconds
-HPPC_CHARGE_PULSE_CURRENT = 2.0     #Current of the HPPC charge Pulse in Ampere (must be positive)
+HPPC_CHARGE_PULSE_CURRENT = 2.2     #Current of the HPPC charge Pulse in Ampere (must be positive)
 HPPC_CHARGE_PULSE_DURATION = 10     #Duration of the HPPC charge pulse in seconds
 HPPC_CHARGE_PULSE_PAUSE = 40        #Pause between charge pulse and step discharge in seconds
 HPPC_STEP_DISCHARGE_CURRENT = -1.0  #Discharge current during the step discharge in ampere (must be negative)
@@ -24,7 +24,7 @@ HPPC_REST_AFTER_STEP = 1200         #Rest time after a discharge step in seconds
 #####################################################
 
 comport = Serial.Serial(port="COM6",baudrate=115200)
-logfile = "./hppc_test.csv" #Path of logfile for the experiment
+logfile = "./hppc_test_hakadi1500mah_1-2.csv" #Path of logfile for the experiment
 
 running = True
 bat_tester = hppc_tester.tester(comport)
@@ -85,9 +85,12 @@ while running:
         hppcsubcycle(55)
 
         if(instructionpointer == 62):
+            bat_tester.set_voltage_limits(CCCV_CHARGE_VOLTAGE,CUTOFF_VOLTAGE)
+            bat_tester.start_cc_regulated(HPPC_STEP_DISCHARGE_CURRENT,HPPC_STEP_DISCHARGE_TIME)
+        if(instructionpointer == 63):
             bat_tester.set_voltage_limits(CCCV_CHARGE_VOLTAGE+0.1,CUTOFF_VOLTAGE-0.1)
             bat_tester.start_cccv(CCCV_CHARGE_VOLTAGE,CCCV_CHARGE_CURRENT,CCCV_CUTOFF_CURRENT,CCCV_CHARGE_TIMEOUT)
-        if(instructionpointer == 63):
+        if(instructionpointer == 64):
             bat_tester.start_idle_time(10)
             running = False
         instructionpointer = instructionpointer + 1

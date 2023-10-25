@@ -22,7 +22,7 @@ OCV_CHARGE_STEP_DURATION = 270   #Duration of the charge step in seconds
 #####################################################
 
 comport = Serial.Serial(port="COM6",baudrate=115200)
-logfile = "./ocv_test.csv"  #Path of the logfile for the experiment
+logfile = "./ocv_test_inc.csv"  #Path of the logfile for the experiment
 
 running = True
 bat_tester = hppc_tester.tester(comport)

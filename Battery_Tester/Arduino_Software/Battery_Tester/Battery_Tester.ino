@@ -36,7 +36,7 @@
 #define CC_I 1.0                    // I Part of the CC PI regulator
 
 #define LOWER_VOLTAGE_LIMIT 0       //Should be regulated by the PC Software and 0V is ok for Sodium batterys
-#define UPPER_VOLTAGE_LIMIT 4.2     //Manufacturer states that 4.1 is the charge cut-off voltage
+#define UPPER_VOLTAGE_LIMIT 4.5     //Manufacturer states that 4.1 is the charge cut-off voltage
 #define CURRENT_LIMIT 5.0           //Maximum continous discharge in datasheet is 3C = 4.5A so 5A as a worst case limit should be reasonable
 
 
