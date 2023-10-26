@@ -9,12 +9,12 @@ CHARGE_VOLTAGE = 4.1    #Charge Voltage in V
 CHARGE_TIMEOUT = 10000  #Maximum charging time if cutoff current is not reacher earlier in seconds
 
 DISCHARGE_CUTOFF_VOLTAGE = 1.5  #Cutoff voltage for the constant current discharge in V
-DISCHARGE_CURRENT = -0.75       #Discharge current in Ampere (must be negative)
+DISCHARGE_CURRENT = -3.0       #Discharge current in Ampere (must be negative)
 DISCHARGE_TIMEOUT = 60000       #Maximum discharge time in seconds
 #####################################################
 
 comport = Serial.Serial(port="COM6",baudrate=115200)
-logfile = "./static_test_0c5.csv" #Path of the logfile for the experiment
+logfile = "./static_test_2c-1-1.csv" #Path of the logfile for the experiment
 
 running = True
 bat_tester = hppc_tester.tester(comport)
@@ -52,11 +52,12 @@ while running:
 
 
 comport.close()
+time.sleep(1200) # wait 20min between runs
 
-DISCHARGE_CURRENT = -0.375
+DISCHARGE_CURRENT = -1.875
 
 comport = Serial.Serial(port="COM6",baudrate=115200)
-logfile = "./static_test_0c25.csv" #Path of the logfile for the experiment
+logfile = "./static_test_1c25-1-2.csv" #Path of the logfile for the experiment
 
 running = True
 bat_tester = hppc_tester.tester(comport)
@@ -94,12 +95,12 @@ while running:
 
 
 comport.close()
+time.sleep(1200) # wait 20min between runs
 
-
-DISCHARGE_CURRENT = -2.25
+DISCHARGE_CURRENT = -1.125
 
 comport = Serial.Serial(port="COM6",baudrate=115200)
-logfile = "./static_test_1c5.csv" #Path of the logfile for the experiment
+logfile = "./static_test_0c75-1-1.csv" #Path of the logfile for the experiment
 
 running = True
 bat_tester = hppc_tester.tester(comport)
