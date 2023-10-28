@@ -46,6 +46,8 @@ class tester:
     instruction_start_time = 0
     instruction_stop_time = 0
     target_operating_mode = 0
+    uv_flag = 0
+    ov_flag = 0
 
 
     def __init__(self, comport:Serial):
@@ -118,6 +120,8 @@ class tester:
         self.instruction_start_time = tim.time()
         self.instruction_stop_time = tim.time() + time
         self.instr_cmplt = False
+        self.ov_flag = 0
+        self.uv_flag = 0
         
 
     def start_idle_time(self,time):
@@ -145,6 +149,8 @@ class tester:
         self.instruction_start_time = tim.time()
         self.instruction_stop_time = tim.time() + time
         self.instr_cmplt = False
+        self.ov_flag = 0
+        self.uv_flag = 0
         self.target_operating_mode = int(operatingmodes["CCP"])
 
 
@@ -164,6 +170,8 @@ class tester:
         self.instruction_start_time = tim.time()
         self.instruction_stop_time = tim.time() + time
         self.instr_cmplt = False
+        self.ov_flag = 0
+        self.uv_flag = 0
         self.target_operating_mode = int(operatingmodes["CCCV"])
 
     
@@ -198,11 +206,13 @@ class tester:
             
         if(self.voltage > self.upper_voltage_limit):
             self.instr_cmplt = True
+            self.ov_flag = 1
             print("ov")
             return True
         
         if(self.voltage < self.lower_voltage_limit):
             self.instr_cmplt = True
+            self.uv_flag = 1
             print("uv")
             return True
         

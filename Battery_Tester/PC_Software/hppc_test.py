@@ -24,7 +24,7 @@ HPPC_REST_AFTER_STEP = 1200         #Rest time after a discharge step in seconds
 #####################################################
 
 comport = Serial.Serial(port="COM6",baudrate=115200)
-logfile = "./hppc_test_hakadi1500mah_1-2.csv" #Path of logfile for the experiment
+logfile = "./hppc_test_hakadi1500mah_2-1.csv" #Path of logfile for the experiment
 
 running = True
 bat_tester = hppc_tester.tester(comport)
