@@ -22,7 +22,7 @@ OCV_CHARGE_STEP_DURATION = 270   #Duration of the charge step in seconds
 #####################################################
 
 comport = Serial.Serial(port="COM6",baudrate=115200)
-logfile = "./ocv_test_inc_2-1.csv"  #Path of the logfile for the experiment
+logfile = "./ocv_test_inc_1.csv"  #Path of the logfile for the experiment
 
 running = True
 bat_tester = hppc_tester.tester(comport)
@@ -32,7 +32,8 @@ dischargesteps = 0
 operatingmode = 0
 chargesteps = 0
 
-
+lower_limit_reached = 0
+upper_limit_reached = 0
 
 with open(logfile, 'a') as f:
     f.write("step,mode,time,voltage,current\n")
@@ -58,51 +59,46 @@ while running:
         bat_tester.set_voltage_limits(CCCV_CHARGE_VOLTAGE+0.1,OCV_DISCHARGE_CUTOFF_VOLTAGE-0.1)
         bat_tester.start_cccv(CCCV_CHARGE_VOLTAGE,CCCV_CHARGE_CURRENT,CCCV_CUTOFF_CURRENT,CCCV_CHARGE_TIMEOUT)
        
-    if((instructionpointer == 1) and (bat_tester.check_operation_complete())):
-        operatingmode = 1
-        upper_limit_reached = 0
-        lower_limit_reached = 0
+    
+    elif(bat_tester.check_operation_complete()):
 
-    if(operatingmode == 1):
+        if(instructionpointer == 1):
+            bat_tester.start_idle_time(IDLE_BEFORE_OCV_START)
+            operatingmode = 1
 
-        if(bat_tester.check_operation_complete()):
-            bat_tester.set_voltage_limits(CCCV_CHARGE_VOLTAGE+0.1,OCV_DISCHARGE_CUTOFF_VOLTAGE)
-            if(bat_tester.uv_flag):
-                operatingmode = 2
-            elif((instructionpointer % 2) == 1):  #IDLE
-                bat_tester.start_idle(OCV_DISCHARGE_STEP_WAIT)
-            else: #Discharge
-                bat_tester.start_cc_regulated(OCV_DISCHARGE_CURRENT,OCV_DISCHARGE_STEP_DURATION)
+        if(lower_limit_reached == 0):
+            if(operatingmode == 1):
+                    dischargesteps = dischargesteps + 1
+                    bat_tester.start_cc_regulated(OCV_DISCHARGE_CURRENT,OCV_DISCHARGE_STEP_DURATION)
+                    operatingmode = 2
 
-            instructionpointer = instructionpointer + 1
-            print(instructionpointer)
-
-    if(operatingmode == 2):
-        bat_tester.set_voltage_limits(CCCV_CHARGE_VOLTAGE,OCV_DISCHARGE_CUTOFF_VOLTAGE-0.1)
-        operatingmode = 3
-        bat_tester.start_idle(OCV_DISCHARGE_STEP_WAIT)
-        if((instructionpointer % 2) == 0):
-            instructionpointer = instructionpointer + 1
+            elif(operatingmode == 2):
+                bat_tester.start_idle_time(OCV_DISCHARGE_STEP_WAIT)
+                operatingmode = 1
         else:
-            instructionpointer = instructionpointer + 2
+            operatingmode = 3
 
+        if(lower_limit_reached == 1):
+            if(operatingmode == 3):
+                    bat_tester.set_voltage_limits(CCCV_CHARGE_VOLTAGE+0.05,OCV_DISCHARGE_CUTOFF_VOLTAGE-0.1)
+                    chargesteps = chargesteps + 1
+                    bat_tester.start_cc_regulated(OCV_CHARGE_CURRENT,OCV_CHARGE_STEP_DURATION)
+                    operatingmode = 4
+
+            elif(operatingmode == 4):
+                bat_tester.start_idle_time(OCV_CHARGE_STEP_WAIT)
+                operatingmode = 3
+
+            if(upper_limit_reached == 1):
+                operatingmode = 5
+
+
+        if(operatingmode == 5):
+            bat_tester.start_idle_time(10)
+            running = False
+
+        instructionpointer = instructionpointer + 1
         print(instructionpointer)
-
-    if(operatingmode == 3):
-        if(bat_tester.check_operation_complete()):
-            if(bat_tester.ov_flag):
-                operatingmode = 4
-            if((instructionpointer % 2) == 1):  #IDLE
-                bat_tester.start_idle(OCV_CHARGE_STEP_WAIT)
-            else: #Discharge
-                bat_tester.start_cc_regulated(OCV_CHARGE_CURRENT,OCV_CHARGE_STEP_DURATION)
-
-            instructionpointer = instructionpointer + 1
-            print(instructionpointer)
-
-    if(operatingmode == 4)
-        bat_tester.start_idle(10)
-        running = False
 
 print(chargesteps)
 print(dischargesteps)

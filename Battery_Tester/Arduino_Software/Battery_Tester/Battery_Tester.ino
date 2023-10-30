@@ -15,7 +15,7 @@
 #define DAC_CHARGE_ADDRESS 0x60     //I2C Address of the Charge Controller
 #define DAC_DISCHARGE_ADDRESS 0x61  //I2C Address of the Discharge Controller
 #define ADC_ADDRESS 0x48            //I2C Address of the ADS1115 ADC
-#define ADC_CURRENT_CONFIG 0x30E3   //
+#define ADC_CURRENT_CONFIG 0x60E3   //
 #define ADC_VOLTAGE_CONFIG 0x00E3   //
 #define ADC_CONFIG_REG 0x01         // Address of ADC configuration register
 #define ADC_CONVERSION_REG 0x00     // Address of ADC result register
